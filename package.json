@@ -2,7 +2,8 @@
   "name": "@jdframe/core",
   "version": "1.0.0",
   "description": "Extensions to Javascript core classes to enable you to do more interesting things",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "rm -rf dist && tsc",
