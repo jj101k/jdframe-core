@@ -4,6 +4,8 @@ import { Debuggable } from "./Debuggable"
  * This is a lightweight wrapper around a promise to allow you to effectively
  * extend it, because Promise itself is not extensible unless you have the same
  * constructor.
+ *
+ * NB: This does not define an underlying promise, nor shadow its constructor
  */
 export abstract class ExtensiblePromise<T> extends Debuggable implements Promise<T> {
     /**
