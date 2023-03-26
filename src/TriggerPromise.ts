@@ -5,11 +5,14 @@ import { ExtensiblePromise } from "./ExtensiblePromise"
  * This is a lightweight wrapper around a promise to give you something which
  * won't run immediately but will on request.
  */
-export class TriggerPromise<T> extends ExtensiblePromise<T> {
+export class TriggerPromise extends ExtensiblePromise<unknown> {
     /**
      *
      */
-    protected promise: Promise<T>
+    protected promise = new Promise((resolve, reject) => {
+        this.reject = reject
+        this.resolve = resolve
+    })
 
     /**
      *
@@ -27,18 +30,6 @@ export class TriggerPromise<T> extends ExtensiblePromise<T> {
      */
     get promiseOnly() {
         return this.promise
-    }
-
-    /**
-     *
-     * @param action The action to be performed on activate
-     */
-    constructor(action: () => Promise<T> | T) {
-        super()
-        this.promise = new Promise((resolve, reject) => {
-            this.reject = reject
-            this.resolve = resolve
-        }).then(action)
     }
 
     /**
