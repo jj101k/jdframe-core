@@ -1,5 +1,5 @@
 import assert from "assert"
-import { Timeout, TriggerPromise } from "@jdframe/core"
+import { Timeout, TriggerPromise } from ".."
 
 describe("Trigger promise", () => {
     it("is not resolved until triggered", async () => {

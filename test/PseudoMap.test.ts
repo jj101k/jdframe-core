@@ -1,5 +1,5 @@
 import assert from "assert"
-import { PseudoMap } from "@jdframe/core"
+import { PseudoMap } from ".."
 
 interface Test {
     a: string

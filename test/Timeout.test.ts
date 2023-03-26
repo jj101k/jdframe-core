@@ -1,5 +1,5 @@
 import assert from "assert"
-import { Timeout } from "@jdframe/core"
+import { Timeout } from ".."
 
 describe("Timeout tests", () => {
     it("resolves after the given time (roughly)", async () => {
