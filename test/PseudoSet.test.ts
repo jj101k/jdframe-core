@@ -1,5 +1,5 @@
 import assert from "assert"
-import { PseudoMap, PseudoSet } from ".."
+import { PseudoMap, PseudoSet } from "@jdframe/core"
 
 describe("Pseudo-set tests", () => {
     let ps:PseudoSet<any>
