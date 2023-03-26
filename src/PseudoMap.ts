@@ -1,7 +1,7 @@
 /**
  * For using a map with objects as keys
  */
-export class PseudoMap<K extends string | number, R, I> implements Map<I, R> {
+export class PseudoMap<I, R, K extends string | number = string> implements Map<I, R> {
     /**
      *
      */
