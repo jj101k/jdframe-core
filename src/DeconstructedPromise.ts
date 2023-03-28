@@ -42,20 +42,26 @@ export class DeconstructedPromise<T> {
     }
 
     /**
-     *
-     * @returns
+     * Rejects the action. This returns immediately; any consequences of
+     * rejection will happen in a later execution pass.
      */
     reject(): void {
         const {reject} = this.options
-        reject()
+        setImmediate(reject)
     }
 
     /**
+     * Resolves the action.
      *
+     * Notably, the promise this returns will not be resolved until the action
+     * is resolved/rejected, but without waiting for the originally passed
+     * resolver to be resolved/rejected.
+     *
+     * @returns
      */
     async resolve(): Promise<void> {
         const {action, resolve} = this.options
         const result = await action()
-        resolve(result)
+        setImmediate(() => resolve(result))
     }
 }
