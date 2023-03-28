@@ -1,5 +1,6 @@
 export * as Errors from "./Errors"
 export * from "./Debuggable"
+export * from "./DeconstructedPromise"
 export * from "./ExtensiblePromise"
 export * from "./PseudoMap"
 export * from "./PseudoSet"
