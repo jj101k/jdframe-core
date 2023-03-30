@@ -1,3 +1,5 @@
+import { Cancelled } from "./Errors"
+
 /**
  *
  */
@@ -16,8 +18,8 @@ export class DeconstructedPromise<T> {
      */
     static forAction<T>(action: PromisableFunction<T>) {
         let actor!: DeconstructedPromise<T>
-        const promise = new Promise((resolve, reject) => { // Called immediately
-            actor = new DeconstructedPromise(resolve, reject, action)
+        const promise = new Promise<T>((resolve, reject) => { // Called immediately
+            actor = new DeconstructedPromise<T>(resolve, reject, action)
         })
         return {promise, actor}
     }
@@ -27,7 +29,7 @@ export class DeconstructedPromise<T> {
      */
     private readonly options: {
         action: PromisableFunction<T>,
-        reject: () => any,
+        reject: (reason?: any) => any,
         resolve: (result: T) => any,
     }
 
@@ -37,7 +39,7 @@ export class DeconstructedPromise<T> {
      * @param reject
      * @param action
      */
-    constructor(resolve: (result: T) => any, reject: () => any, action: PromisableFunction<T>) {
+    constructor(resolve: (result: T) => any, reject: (reason?: any) => any, action: PromisableFunction<T>) {
         this.options = {resolve, reject, action}
     }
 
@@ -47,7 +49,7 @@ export class DeconstructedPromise<T> {
      */
     reject(): void {
         const {reject} = this.options
-        setImmediate(reject)
+        setImmediate(() => reject(new Cancelled()))
     }
 
     /**
